@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WorldClock</string>
+    <string name="title_name">世界時計</string>
+    <string name="Japan">日本</string>
+    <string name="Alaska">アラスカ</string>
+    <string name="India">インド</string>
+
+</resources>
