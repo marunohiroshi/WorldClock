@@ -1,6 +1,5 @@
 package com.example.worldclock;
 
-import android.icu.util.Calendar;
 import android.icu.util.TimeZone;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -10,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class MainActivity extends FragmentActivity {
     ViewPager viewPager;
