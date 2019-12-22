@@ -22,5 +22,4 @@ public class JapanFragment extends Fragment {
         }
 
     }
-//    MainActivity.japanDate.getNowDate();
 }
