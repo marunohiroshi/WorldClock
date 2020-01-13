@@ -30,8 +30,6 @@ public class MainActivity extends FragmentActivity {
         int date = rightNow.get(Calendar.DATE);
         AlaskaFragment AF = AlaskaFragment.newInstance(year, month, date);
 
-
-
         viewPager.setAdapter(
                 new MyFragmentPagerAdapter(
                         getSupportFragmentManager()
