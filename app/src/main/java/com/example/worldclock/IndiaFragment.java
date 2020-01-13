@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-
 import static android.content.ContentValues.TAG;
-
 
 public class IndiaFragment extends Fragment {
     @Override
@@ -23,6 +21,4 @@ public class IndiaFragment extends Fragment {
             throw e;
         }
     }
-
-
 }

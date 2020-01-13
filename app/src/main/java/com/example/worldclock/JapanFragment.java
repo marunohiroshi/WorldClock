@@ -10,8 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import static android.content.ContentValues.TAG;
-public class JapanFragment extends Fragment {
 
+public class JapanFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         try {
@@ -20,6 +20,5 @@ public class JapanFragment extends Fragment {
             Log.e(TAG, "onCreateView", e);
             throw e;
         }
-
     }
 }
