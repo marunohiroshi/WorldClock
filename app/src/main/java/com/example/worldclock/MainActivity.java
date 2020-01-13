@@ -1,14 +1,11 @@
 package com.example.worldclock;
 
-import android.icu.util.TimeZone;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class MainActivity extends FragmentActivity {
@@ -16,6 +13,7 @@ public class MainActivity extends FragmentActivity {
     public TextView japanDate;
     public TextView indiaDate;
     public TextView alaskaDate;
+    TextView a;
 
 
     @Override
@@ -26,8 +24,13 @@ public class MainActivity extends FragmentActivity {
         indiaDate = findViewById(R.id.IndiaDate);
         alaskaDate = findViewById(R.id.AlaskaDate);
         viewPager = findViewById(R.id.viewPager);
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
+        Calendar rightNow = Calendar.getInstance();
+        int year = rightNow.get(Calendar.YEAR);
+        int month = rightNow.get(Calendar.MONTH) + 1;
+        int date = rightNow.get(Calendar.DATE);
+        AlaskaFragment AF = AlaskaFragment.newInstance(year, month, date);
+
+
 
         viewPager.setAdapter(
                 new MyFragmentPagerAdapter(

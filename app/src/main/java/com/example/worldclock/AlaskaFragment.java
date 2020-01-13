@@ -13,6 +13,16 @@ import static android.content.ContentValues.TAG;
 
 
 public class AlaskaFragment extends Fragment {
+
+    static AlaskaFragment newInstance(int y, int m, int d) {
+
+        Bundle args = new Bundle();
+
+        AlaskaFragment fragment = new AlaskaFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         try {
