@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/AlaskaDate"
+            android:id="@+id/Alaska"
             android:layout_width="82dp"
             android:layout_height="101dp"
             android:layout_gravity="center"
@@ -14,30 +13,26 @@
             android:text="@string/Alaska" />
 
         <LinearLayout
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"
             tools:context=".MainActivity">
 
-                <TextClock
+                <TextView
+                    android:id="@+id/Alaska_Date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
                     android:textSize="60sp"
-                    android:timeZone="America/Anchorage"
-                    android:format24Hour="yyyy/MM/dd"
-                    android:format12Hour="yyyy/MM/dd"
-                    tools:targetApi="jelly_bean_mr1" />
+                    />
 
-                <TextClock
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="60sp"
-                    android:timeZone="America/Anchorage"
-                    android:format24Hour="HH:mm:ss"
-                    android:format12Hour="hh:mm:ss"
-                    tools:targetApi="jelly_bean_mr1" />
+                    android:textSize="60sp"/>
+
         </LinearLayout>
 
 </LinearLayout>
