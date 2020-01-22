@@ -1,10 +1,13 @@
 package com.example.worldclock;
 
+import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
+
     MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -14,11 +17,13 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int i) {
         switch (i) {
             case 0:
-                return new JapanFragment();
+                return DateFragment.newInstance();
             case 1:
-                return new IndiaFragment();
+                DateFragment India = new DateFragment();
+                return India;
             default:
-                return new AlaskaFragment();
+                DateFragment Alaska = new DateFragment();
+                return Alaska;
         }
     }
 
