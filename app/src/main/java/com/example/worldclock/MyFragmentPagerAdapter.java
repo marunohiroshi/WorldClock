@@ -1,17 +1,15 @@
 package com.example.worldclock;
 
-import android.widget.TextView;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
+import java.util.List;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
+
+    // bind したいデータのコレクション
+    private final List<clock> WorldClockList;
 
     MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -22,24 +20,21 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int i) {
         String country;
         String date;
-        TimeZone tzn;
+
         switch (i) {
             case 0:
                 country = "日本";
-                tzn = TimeZone.getTimeZone("Asia/Tokyo");
-                date = getToday(tzn);
+                date = "Asia/Tokyo";
                 DateFragment Japan = DateFragment.newInstance(country, date);
                 return Japan;
             case 1:
                 country = "インド";
-                tzn = TimeZone.getTimeZone("Asia/Kolkata");
-                date = getToday(tzn);
+                date = "Asia/Kolkata";
                 DateFragment India = DateFragment.newInstance(country, date);
                 return India;
             default:
                 country = "アラスカ";
-                tzn = TimeZone.getTimeZone("US/Alaska");
-                date = getToday(tzn);
+                date= "US/Alaska";
                 DateFragment Alaska = DateFragment.newInstance(country, date);
                 return Alaska;
         }
@@ -57,10 +52,5 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         return "ページ" + (position + 1);
     }
 
-    private String getToday(TimeZone tzn) {
-        Date date = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd/\nHH/mm/ss", Locale.getDefault());
-        simpleDateFormat.setTimeZone(tzn);
-        return simpleDateFormat.format(date);
-    }
+
 }

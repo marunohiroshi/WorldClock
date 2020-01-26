@@ -9,6 +9,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
 import static android.content.ContentValues.TAG;
 
 public class DateFragment extends Fragment {
@@ -43,9 +49,20 @@ public class DateFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        String time;
+        TimeZone tzn;
         Bundle bundle = getArguments();
         assert bundle != null;
         country.setText(bundle.getString(COUNTRY));
-        date.setText(bundle.getString(DATE));
+        tzn = TimeZone.getTimeZone(bundle.getString(DATE));
+        time = getToday(tzn);
+        date.setText(time);
+    }
+
+    private String getToday(TimeZone tzn) {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd/\nHH/mm/ss", Locale.getDefault());
+        simpleDateFormat.setTimeZone(tzn);
+        return simpleDateFormat.format(date);
     }
 }
