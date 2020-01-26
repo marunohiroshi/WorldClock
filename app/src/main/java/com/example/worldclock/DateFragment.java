@@ -49,10 +49,10 @@ public class DateFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        String time;
-        TimeZone tzn;
         Bundle bundle = getArguments();
         assert bundle != null;
+        final TimeZone tzn;
+        String time;
         country.setText(bundle.getString(COUNTRY));
         tzn = TimeZone.getTimeZone(bundle.getString(DATE));
         time = getToday(tzn);
