@@ -2,9 +2,7 @@ package com.example.worldclock;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 
@@ -31,12 +29,8 @@ public class MainActivity extends FragmentActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-//                FragmentManager fragmentManager = getSupportFragmentManager();
-//                fragmentManager.beginTransaction();
-//                fragmentManager.findFragmentByTag("date_fragment");
-//                DateFragment dateFragment = (DateFragment) getSupportFragmentManager().findFragmentById(R.id.date_fragment);
-//                assert dateFragment != null;
-//                dateFragment.timeUpdate();
+                DateFragment dateFragment = (DateFragment) MyFragmentPagerAdapter.getCurrentFragment();
+                dateFragment.timeUpdate();
             }
         };
         viewPager.addOnPageChangeListener(listener);

@@ -19,16 +19,16 @@ import static android.content.ContentValues.TAG;
 
 public class DateFragment extends Fragment {
     private static final String COUNTRY = "COUNTRY";
-    private static final String DATE = "DATE";
+    private static final String DATETIME = "DATE&TIME";
     private TextView country;
-    private TextView date;
+    private TextView dateTime;
 
 
     static DateFragment newInstance(String country, String date) {
         Bundle args = new Bundle();
         DateFragment fragment = new DateFragment();
         args.putString(COUNTRY, country);
-        args.putString(DATE, date);
+        args.putString(DATETIME, date);
         fragment.setArguments(args);
         return fragment;
     }
@@ -37,7 +37,7 @@ public class DateFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.date_fragment, container, false);
         country = view.findViewById(R.id.country);
-        date = view.findViewById(R.id.date);
+        dateTime = view.findViewById(R.id.date);
         try {
             return view;
         } catch (Exception e) {
@@ -51,12 +51,12 @@ public class DateFragment extends Fragment {
         super.onStart();
         Bundle bundle = getArguments();
         assert bundle != null;
-        final TimeZone tzn;
+        final TimeZone timeZone;
         String time;
         country.setText(bundle.getString(COUNTRY));
-        tzn = TimeZone.getTimeZone(bundle.getString(DATE));
-        time = getToday(tzn);
-        date.setText(time);
+        timeZone = TimeZone.getTimeZone(bundle.getString(DATETIME));
+        time = getToday(timeZone);
+        dateTime.setText(time);
     }
 
     private String getToday(TimeZone timeZone) {
@@ -66,13 +66,13 @@ public class DateFragment extends Fragment {
         return simpleDateFormat.format(date);
     }
 
-    void timeUpdate(){
+    void timeUpdate() {
         Bundle bundle = getArguments();
         assert bundle != null;
         final TimeZone tzn;
         String time;
-        tzn = TimeZone.getTimeZone(bundle.getString(DATE));
+        tzn = TimeZone.getTimeZone(bundle.getString(DATETIME));
         time = getToday(tzn);
-        date.setText(time);
+        dateTime.setText(time);
     }
 }

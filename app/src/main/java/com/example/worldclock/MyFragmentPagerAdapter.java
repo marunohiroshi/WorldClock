@@ -1,13 +1,22 @@
 package com.example.worldclock;
 
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
+    private static Fragment mCurrentFragment;
+
     MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
+    }
+
+    static Fragment getCurrentFragment() {
+        return mCurrentFragment;
     }
 
     //メソッドでそのインデックスに応じたフラグメントを返す。
@@ -20,18 +29,15 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 country = "日本";
                 date = "Asia/Tokyo";
-                DateFragment Japan = DateFragment.newInstance(country, date);
-                return Japan;
+                return DateFragment.newInstance(country, date);
             case 1:
                 country = "インド";
                 date = "Asia/Kolkata";
-                DateFragment India = DateFragment.newInstance(country, date);
-                return India;
+                return DateFragment.newInstance(country, date);
             default:
                 country = "アラスカ";
                 date = "US/Alaska";
-                DateFragment Alaska = DateFragment.newInstance(country, date);
-                return Alaska;
+                return DateFragment.newInstance(country, date);
         }
     }
 
@@ -47,4 +53,11 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         return "ページ" + (position + 1);
     }
 
+    @Override
+    public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        if (mCurrentFragment != object) {
+            mCurrentFragment = (Fragment) object;
+        }
+        super.setPrimaryItem(container, position, object);
+    }
 }
