@@ -1,14 +1,11 @@
 package com.example.worldclock;
 
-import android.view.ViewGroup;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private Fragment mCurrentFragment;
     MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -50,15 +47,4 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         return "ページ" + (position + 1);
     }
 
-    @Override
-    public void setPrimaryItem(ViewGroup container, int position, Object object) {
-        if (mCurrentFragment != object) {
-            mCurrentFragment = (Fragment) object;
-        }
-        super.setPrimaryItem(container, position, object);
-    }
-
-    public Fragment getCurrentFragment() {
-        return mCurrentFragment;
-    }
 }

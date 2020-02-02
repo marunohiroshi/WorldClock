@@ -59,10 +59,20 @@ public class DateFragment extends Fragment {
         date.setText(time);
     }
 
-    private String getToday(TimeZone tzn) {
+    private String getToday(TimeZone timeZone) {
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd/\nHH/mm/ss", Locale.getDefault());
-        simpleDateFormat.setTimeZone(tzn);
+        simpleDateFormat.setTimeZone(timeZone);
         return simpleDateFormat.format(date);
+    }
+
+    void timeUpdate(){
+        Bundle bundle = getArguments();
+        assert bundle != null;
+        final TimeZone tzn;
+        String time;
+        tzn = TimeZone.getTimeZone(bundle.getString(DATE));
+        time = getToday(tzn);
+        date.setText(time);
     }
 }
