@@ -2,12 +2,18 @@ package com.example.worldclock;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 
 public class MainActivity extends FragmentActivity {
     ViewPager viewPager;
+
+    private static String makeFragmentName(int viewId, int position) {
+        return "android:switcher:" + viewId + ":" + position;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +35,10 @@ public class MainActivity extends FragmentActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                DateFragment dateFragment = (DateFragment) MyFragmentPagerAdapter.getCurrentFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                Fragment fragment = fragmentManager.findFragmentByTag(makeFragmentName(viewPager.getId(), viewPager.getCurrentItem()));
+                DateFragment dateFragment = (DateFragment) fragment;
+                assert dateFragment != null;
                 dateFragment.timeUpdate();
             }
         };
