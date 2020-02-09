@@ -20,9 +20,9 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         viewPager = findViewById(R.id.viewPager);
-        final MyFragmentPagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
+        MyFragmentPagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
 
-        final ViewPager.OnPageChangeListener listener = new ViewPager.OnPageChangeListener() {
+        ViewPager.OnPageChangeListener listener = new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -30,16 +30,17 @@ public class MainActivity extends FragmentActivity {
 
             @Override
             public void onPageSelected(int position) {
-
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                Fragment fragment = fragmentManager.findFragmentByTag(makeFragmentName(viewPager.getId(), viewPager.getCurrentItem()));
+                DateFragment dateFragment = (DateFragment) fragment;
+                if (dateFragment != null) {
+                    dateFragment.timeUpdate();
+                }
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                Fragment fragment = fragmentManager.findFragmentByTag(makeFragmentName(viewPager.getId(), viewPager.getCurrentItem()));
-                DateFragment dateFragment = (DateFragment) fragment;
-                assert dateFragment != null;
-                dateFragment.timeUpdate();
+
             }
         };
         viewPager.addOnPageChangeListener(listener);

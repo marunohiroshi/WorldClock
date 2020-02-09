@@ -1,7 +1,6 @@
 package com.example.worldclock;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-
-import static android.content.ContentValues.TAG;
 
 public class DateFragment extends Fragment {
     private static final String COUNTRY = "COUNTRY";
@@ -38,25 +35,17 @@ public class DateFragment extends Fragment {
         View view = inflater.inflate(R.layout.date_fragment, container, false);
         country = view.findViewById(R.id.country);
         dateTime = view.findViewById(R.id.date);
-        try {
-            return view;
-        } catch (Exception e) {
-            Log.e(TAG, "onCreateView", e);
-            throw e;
-        }
+        return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
         Bundle bundle = getArguments();
-        assert bundle != null;
-        final TimeZone timeZone;
-        String time;
-        country.setText(bundle.getString(COUNTRY));
-        timeZone = TimeZone.getTimeZone(bundle.getString(DATETIME));
-        time = getToday(timeZone);
-        dateTime.setText(time);
+        timeUpdate();
+        if (bundle != null) {
+            country.setText(bundle.getString(COUNTRY));
+        }
     }
 
     private String getToday(TimeZone timeZone) {
@@ -68,11 +57,12 @@ public class DateFragment extends Fragment {
 
     void timeUpdate() {
         Bundle bundle = getArguments();
-        assert bundle != null;
-        final TimeZone tzn;
+        TimeZone tzn;
         String time;
-        tzn = TimeZone.getTimeZone(bundle.getString(DATETIME));
-        time = getToday(tzn);
-        dateTime.setText(time);
+        if (bundle != null) {
+            tzn = TimeZone.getTimeZone(bundle.getString(DATETIME));
+            time = getToday(tzn);
+            dateTime.setText(time);
+        }
     }
 }

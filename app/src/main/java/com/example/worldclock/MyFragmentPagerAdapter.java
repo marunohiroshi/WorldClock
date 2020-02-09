@@ -4,10 +4,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import static com.example.worldclock.DateFragment.newInstance;
-
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
+    private String[] list = {"日本", "Asia/Tokyo", "インド", "Asia/Kolkata", "アラスカ", "US/Alaska"};
 
     MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -16,29 +15,24 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     //メソッドでそのインデックスに応じたフラグメントを返す。
     @Override
     public Fragment getItem(int i) {
-        String country;
-        String date;
+        int a = i + i;
+        int b = a + 1;
 
         switch (i) {
             case 0:
-                country = "日本";
-                date = "Asia/Tokyo";
-                return newInstance(country, date);
             case 1:
-                country = "インド";
-                date = "Asia/Kolkata";
-                return newInstance(country, date);
-            default:
-                country = "アラスカ";
-                date = "US/Alaska";
-                return newInstance(country, date);
+            case 2:
+                MyFragmentPagerAdapter.Page page = new MyFragmentPagerAdapter.Page(list[a], list[b]);
+                return DateFragment.newInstance(page.country, page.date);
         }
+        return null;
     }
+
 
     //メソッドでページ数を返す。
     @Override
     public int getCount() {
-        return 3;
+        return list.length / 2;
     }
 
     //メソッドでそのインデックスに応じたページのタイトルを返す。
@@ -47,5 +41,13 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         return "ページ" + (position + 1);
     }
 
+    private static class Page {
+        private final String country;
+        private final String date;
 
+        private Page(String country, String date) {
+            this.country = country;
+            this.date = date;
+        }
+    }
 }
