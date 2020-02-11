@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    private String[] list = {"日本", "Asia/Tokyo", "インド", "Asia/Kolkata", "アラスカ", "US/Alaska"};
+    private Page[] list = {new Page("日本", "Asia/Tokyo"), new Page("インド", "Asia/Kolkata"), new Page("アラスカ", "US/Alaska")};
 
     MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -15,24 +15,14 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     //メソッドでそのインデックスに応じたフラグメントを返す。
     @Override
     public Fragment getItem(int i) {
-        int a = i + i;
-        int b = a + 1;
-
-        switch (i) {
-            case 0:
-            case 1:
-            case 2:
-                MyFragmentPagerAdapter.Page page = new MyFragmentPagerAdapter.Page(list[a], list[b]);
-                return DateFragment.newInstance(page.country, page.date);
-        }
-        return null;
+        return DateFragment.newInstance(list[i].country, list[i].date);
     }
 
 
     //メソッドでページ数を返す。
     @Override
     public int getCount() {
-        return list.length / 2;
+        return list.length;
     }
 
     //メソッドでそのインデックスに応じたページのタイトルを返す。

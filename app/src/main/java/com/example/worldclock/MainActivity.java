@@ -9,9 +9,9 @@ import androidx.viewpager.widget.ViewPager;
 
 
 public class MainActivity extends FragmentActivity {
-    ViewPager viewPager;
+    private ViewPager viewPager;
 
-    private static String makeFragmentName(int viewId, int position) {
+    private String makeFragmentName(int viewId, int position) {
         return "android:switcher:" + viewId + ":" + position;
     }
 
@@ -34,7 +34,7 @@ public class MainActivity extends FragmentActivity {
                 Fragment fragment = fragmentManager.findFragmentByTag(makeFragmentName(viewPager.getId(), viewPager.getCurrentItem()));
                 DateFragment dateFragment = (DateFragment) fragment;
                 if (dateFragment != null) {
-                    dateFragment.timeUpdate();
+                    dateFragment.updateTime();
                 }
             }
 

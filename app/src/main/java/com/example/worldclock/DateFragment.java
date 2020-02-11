@@ -15,17 +15,17 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 public class DateFragment extends Fragment {
-    private static final String COUNTRY = "COUNTRY";
-    private static final String DATETIME = "DATE&TIME";
-    private TextView country;
-    private TextView dateTime;
+    private static final String KEY_COUNTRY = "COUNTRY";
+    private static final String KEY_DATE_AND_TIME = "DATE&TIME";
+    private TextView textViewCountry;
+    private TextView textViewDateAndTime;
 
 
     static DateFragment newInstance(String country, String date) {
         Bundle args = new Bundle();
         DateFragment fragment = new DateFragment();
-        args.putString(COUNTRY, country);
-        args.putString(DATETIME, date);
+        args.putString(KEY_COUNTRY, country);
+        args.putString(KEY_DATE_AND_TIME, date);
         fragment.setArguments(args);
         return fragment;
     }
@@ -33,8 +33,8 @@ public class DateFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.date_fragment, container, false);
-        country = view.findViewById(R.id.country);
-        dateTime = view.findViewById(R.id.date);
+        textViewCountry = view.findViewById(R.id.country);
+        textViewDateAndTime = view.findViewById(R.id.date);
         return view;
     }
 
@@ -42,9 +42,9 @@ public class DateFragment extends Fragment {
     public void onStart() {
         super.onStart();
         Bundle bundle = getArguments();
-        timeUpdate();
+        updateTime();
         if (bundle != null) {
-            country.setText(bundle.getString(COUNTRY));
+            textViewCountry.setText(bundle.getString(KEY_COUNTRY));
         }
     }
 
@@ -55,14 +55,14 @@ public class DateFragment extends Fragment {
         return simpleDateFormat.format(date);
     }
 
-    void timeUpdate() {
+    void updateTime() {
         Bundle bundle = getArguments();
         TimeZone tzn;
         String time;
         if (bundle != null) {
-            tzn = TimeZone.getTimeZone(bundle.getString(DATETIME));
+            tzn = TimeZone.getTimeZone(bundle.getString(KEY_DATE_AND_TIME));
             time = getToday(tzn);
-            dateTime.setText(time);
+            textViewDateAndTime.setText(time);
         }
     }
 }
